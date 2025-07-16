@@ -10,9 +10,9 @@ jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.r5hvghh.mongodb.net
-      MONGODB_USERNAME: sushmitghosh
-      MONGODB_PASSWORD: wPcjVmoVQQC9ZYkP
-      PORT: 8080
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+      PORT: ${{ secrets.PORT }}
     environment: testing
     runs-on: ubuntu-latest
     steps:
@@ -32,6 +32,7 @@ jobs:
       - name: Output information
         run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+          echo "MONGODB_USERNAME: ${{ env.MONGODB_PASSWORD }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
